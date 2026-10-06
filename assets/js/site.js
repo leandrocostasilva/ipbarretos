@@ -14,17 +14,25 @@ function measureChrome() {
 
 function goToHash() {
   var id = decodeURIComponent(location.hash.replace(/^#/, ""));
-  if (!id) return;
+  if (!id || id === "contato") return;
   var target = document.getElementById(id);
   if (!target) return;
   target.scrollIntoView();
 }
 
-measureChrome();
-requestAnimationFrame(function () {
+function settleChrome() {
   measureChrome();
-  goToHash();
-});
+  requestAnimationFrame(function () {
+    measureChrome();
+    goToHash();
+  });
+}
 
+Promise.all([
+  customElements.whenDefined("site-header"),
+  customElements.whenDefined("site-footer")
+]).then(settleChrome);
+
+window.addEventListener("load", settleChrome);
 window.addEventListener("resize", measureChrome);
 window.addEventListener("hashchange", goToHash);

@@ -87,6 +87,9 @@ summary:focus-visible {
   outline-offset: 3px;
 }
 
+site-header,
+site-footer { display: block; }
+
 .skip-link {
   position: absolute;
   left: 1rem;

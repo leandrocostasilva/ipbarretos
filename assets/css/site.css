@@ -55,6 +55,7 @@
   --brown: #9f694c;
   --brown-dark: #4f2f17;
   --header-h: 5.5rem;
+  --footer-h: 10.5rem;
   --wrap: 70rem;
 }
 
@@ -64,11 +65,14 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 1rem);
+  scroll-padding-top: calc(var(--header-h) + 0.75rem);
+  scroll-padding-bottom: calc(var(--footer-h) + 0.75rem);
 }
 
 body {
   margin: 0;
+  padding-top: var(--header-h);
+  padding-bottom: var(--footer-h);
   background: var(--cream);
   color: var(--ink);
   font-family: Arimo, "Trebuchet MS", sans-serif;
@@ -88,7 +92,17 @@ summary:focus-visible {
 }
 
 site-header,
-site-footer { display: block; }
+site-footer {
+  display: block;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  background: var(--cream);
+}
+
+site-header { top: 0; }
+site-footer { bottom: 0; }
 
 .skip-link {
   position: absolute;
@@ -111,9 +125,7 @@ site-footer { display: block; }
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 30;
+  position: relative;
   background: var(--cream);
 }
 
@@ -245,7 +257,7 @@ site-footer { display: block; }
 .hero {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
-  min-height: calc(100svh - var(--header-h));
+  min-height: calc(100svh - var(--header-h) - var(--footer-h));
   background: var(--cream);
 }
 
@@ -492,7 +504,7 @@ site-footer { display: block; }
 
 .contact {
   background: var(--cream);
-  padding: 1.25rem 0 0.9rem;
+  padding: 0.75rem 0 0.65rem;
   border-top: 1px solid var(--sand);
 }
 

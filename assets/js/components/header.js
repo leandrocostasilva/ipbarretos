@@ -60,6 +60,10 @@ class SiteHeader extends HTMLElement {
       }
     });
 
+    nav.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeNav();
+    });
+
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") closeNav();
     });
